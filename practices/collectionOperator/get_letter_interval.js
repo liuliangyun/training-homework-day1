@@ -1,6 +1,6 @@
 'use strict';
 
-var str = 'abcdefghijklmnopqrstuvwxyz';
+const str = 'abcdefghijklmnopqrstuvwxyz';
 
 function get_letter_interval(number_a, number_b) {
   //在这里写入代码
@@ -8,11 +8,7 @@ function get_letter_interval(number_a, number_b) {
   let min = number_a > number_b ? number_b : number_a;
   let max = number_a > number_b ? number_a : number_b;
   for (let i = min; i <= max; i++) {
-    if (i > 26) {
-      result.push(convert(i));
-    } else {
-      result.push(str.get(i - 1));
-    }
+    result.push(convert(i, ''));
   }
 
   if (number_a > number_b) {
@@ -21,16 +17,22 @@ function get_letter_interval(number_a, number_b) {
   return result;
 }
 
-function convert(i) {
-  let s = '';
+function convert(i, s) {
+  let yushu;
+  let shang;
   if (i >= 26) {
-    let yushu = i % 26;
-    let shang = i / 26;
+    yushu = i % 26;
+    shang = i / 26;
     i = shang;
+    if (yushu != 0) {
+      return s += convert(i, '') + str.substring(yushu - 1, yushu);
+
+    } else {
+      return s += convert(i - 1, '') + 'z';
+    }
   } else {
-    s += str.indexOf(i - 1);
+    return s += str.substring(i - 1, i);
   }
-  return s;
 }
 
 module.exports = get_letter_interval;
