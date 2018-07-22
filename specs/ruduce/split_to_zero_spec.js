@@ -18,4 +18,5 @@ describe('split_to_zero', function () {
     var result = split_to_zero(0.7, 0.3);
     expect(result).toEqual(collection_b);
   });
+
 });

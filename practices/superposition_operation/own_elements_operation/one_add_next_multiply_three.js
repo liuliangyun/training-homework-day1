@@ -1,5 +1,11 @@
 'use strict';
 function one_add_next_multiply_three(collection){
-  return [12,24,36,48,60,72,84,96,108,120];
+  return collection.map((x,index,arr) => {
+    if(index<collection.length-1){
+      return (x+arr[index+1])*3;
+    }
+    return x;
+  }).slice(0,collection.length-1);
+
 }
 module.exports = one_add_next_multiply_three;
